@@ -21,13 +21,53 @@ public class sortrevise{
 
 		mergesort(arr);
 
-		System.out.println("mergesort Result:  "+Arrays.toString(arr));
+        System.out.println("mergesort Result:  "+Arrays.toString(arr));
+
+        arr=new int[] {10,83,12,45,67,345,12,45,6,34,23};
+
+        quicksort(arr,0,arr.length-1);
+
+        System.out.println("Quicksort Result: "+Arrays.toString(arr));
+        
+
 
 
 	}
 
 
-	public static void mergesort(int[] a){
+	private static void quicksort(int[] arr, int low, int high) {
+
+            if(low<high){
+                int p=pivot(arr,low,high);
+                quicksort(arr, low, p-1);
+                quicksort(arr, p+1, high);
+            }
+
+    }
+
+    private static int pivot(int[] arr, int low, int high) {
+        int p=high;
+        int i=-1;
+        //int cnt;
+
+        for(int j=0;j<high;j++){
+            if(arr[j]<=arr[p]){
+                i++;
+                swap(arr,i,j);
+            }
+        }
+        swap(arr,p,i+1);
+        return i+1;
+    }
+
+    private static void swap(int[] arr, int p, int i) {
+
+        int temp=arr[p];
+        arr[p]=arr[i];
+        arr[i]=temp;
+    }
+
+    public static void mergesort(int[] a) {
 
 		int low=0;
 		int high=a.length-1;
