@@ -16,7 +16,8 @@ public class sortrevise{
 
 		System.out.println("selectionsort Result:  "+Arrays.toString(arr));
 
-		arr=new int[] {10,83,12,45,67,345,12,45,6,34,23};
+        arr=new int[] {10,83,12,45,67,345,12,45,6,34,23};
+        
 
 		mergesort(arr);
 
@@ -34,41 +35,43 @@ public class sortrevise{
 	}
 
 	public static void mergesortutil(int[] a,int l,int h){
-		int low=l;
-		int high=h;
+		
 		if(l<h){
-			int mid=(low+high)/2;
-			System.out.println(l+" "+mid+" "+h);
-			mergesortutil(a,low,mid);
-			mergesortutil(a,mid+1,high);
-			merge(a,low,mid,high);
+			int mid=(l+h)/2;
+			//System.out.println(l+" "+mid+" "+h);
+			mergesortutil(a,l,mid);
+			mergesortutil(a,mid+1,h);
+			merge(a,l,mid,h);
 
 		}
 
 	}
 
 	public static void merge(int[] a,int l,int m,int h){
-		System.out.println(Arrays.toString(a)+"      "+l+" "+m+" "+h);
+		//System.out.println(Arrays.toString(a)+"      "+l+" "+m+" "+h);
 		int[] lr=new int[m-l+1];
 		int[] rr=new int[h-m];
 
 		for(int i=0;i<lr.length;i++){
 			lr[i]=a[i+l];
-		}
-		for(int i=0;i<rr.length;i++){
-			rr[i]=a[i+m+1];
-		}
-		int l1=0,k=0,low=0;
+        }
+        //System.out.println(Arrays.toString(lr));
+		for(int j=0;j<rr.length;j++){
+			rr[j]=a[j+m+1];
+        }
+        //System.out.println(Arrays.toString(rr));
+		int l1=0,k=0,low=l;
 		while(l1<lr.length && k<rr.length){
 			if(lr[l1]<=rr[k]){
 				a[low]=lr[l1];
-				l1++;low++;
+				l1++;
 			}
 			else{
 				a[low]=rr[k];
-				k++;low++;
-			}
-
+				k++;
+            }
+            low++;
+           //System.out.println("while "+ Arrays.toString(a)); 
 		}
 		while(l1<lr.length){
 			a[low]=lr[l1];
@@ -77,7 +80,10 @@ public class sortrevise{
 		while(k<rr.length){
 			a[low]=rr[k];
 			k++;low++;
-		}
+        }
+        //System.out.println(Arrays.toString(a));
+        //Scanner sc=new Scanner(System.in);
+	    //String n1=sc.nextLine();
 	}
 
 	public static void selectionsort(int[] a){
